@@ -1,0 +1,25 @@
+Program design:
+
+Program.java: Contains the main class that "tokenizes" a given input file using the tokenizer
+               class and prints out the numeric value for the tokens to the console.
+
+Tokenizer.java:
+
+        The legal tokens, white spaces and the token stream are initialized as ArrayLists
+
+        tokenize(filePath) - Puts the valid tokens into the token stream array, from an input file.
+                             Throws an error for any invalid token
+
+        currentToken() - Returns the token at the current index from the token stream
+
+        nextToken() - Increments the current token stream index by 1, if the next token exists
+
+        hasNext() - Checks if the next token exists in the token stream
+
+        getTokenValue() - Returns the token number for a given valid token
+
+        throwError() - Throws an error with the line number and exits the program (used by the tokenize method)
+
+        nextChar() - Returns the next character in the input stream
+
+        populateLegalTokens() - Initializes the the legal token array according to the specified index

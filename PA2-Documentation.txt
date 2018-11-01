@@ -1,0 +1,75 @@
+Program design:
+
+    Program.java - Contains the main class that passes the input file path t the parser and prints the parse tree
+
+    Parser.java - Parses the passed in file, using the tokenizer class and parse tree implementation.
+                  Contains method for "pretty printing" the program which prints using the Printer class.
+
+    Printer.java - Prints the formatted program from a passed in Parse Tree.
+
+    ParseTree.java - The Parse Tree object class. Contains methods for navigating through the tree
+
+    TreeNode.java - Node oject for the parse tree.
+
+    Exceptions - Contains some custom exception. All the exceptions inherit from the InterpreterException class.
+
+
+
+
+
+Parser.java:
+
+    parse(String filePath) - Parses a file and returns a parse tree
+
+    print(ParseTree parseTree) - Prints the provided parse tree
+
+    matchAndConsume(String tokenString) - Verifies that the current token in the tokenizer is valid and moves to the next token
+
+    *  The rest of the methods parses each of the specific nodes types, i.e adds the token to the parse tree.
+    *  The method names specify which node it's parsing. The parsing implementation is done using the CORE grammar
+    *  Appropriate exceptions are thrown based on the error.
+    *  NOTE: The ID declaration and assignments are stored on a symbol table in the ParseTree class.
+
+
+Printer.java:
+
+    indent() - Prints indentations based on the indent level
+
+    printProgram(ParseTree parseTree) - Prints the program to console using the input parse tree
+
+    *  The following methods prints each of the specific nodes.
+    *  The method names specify which node it's printing. The printing implementation is based on the CORE grammar
+
+
+ParseTree.java:
+
+    *  Constructor generates a parse tree with one node.
+    *  The ID declaration and assignments are stored on a symbol table.
+
+    getAlt() & setAlt() - Getter and setter for the "alt" of the current node.
+
+    getValue() & setValue() - Getter and setter for the "value" of the current ID node.
+
+    getNodeType() & setNodeType() - Getter and setter for the "node type" of the current node.
+
+    getId() & setId() - Getter and setter for the name/id of the current ID node.
+
+    addChild() - Adds child node to the current node of the parse tree
+
+    moveToChild(int childIndex) - Moves the pointer/cursor to a child node
+
+    moveToParent() - Moves the pointer/cursor to the parent node
+
+    isDeclared(String symbolTableKey) - Verifies if an ID is declared or not
+
+
+TreeNode.java:
+
+    *  The node contains the following properties: id name, alt, node type, parent, list of children, id value.
+    *  The Node types are in this class as an enum
+
+
+Exception classes:
+
+    *  The InterpreterException is a custom exception.
+    *  IdRedeclaredException, IdUndeclaredException, InvalidTokenException, UnexpectedTokenException are sub classes of the InterpreterException
